@@ -1,13 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
+import {Router, browserHistory} from 'react-router';
 
-import First from './components/First.jsx';
-import Second from './components/Second.jsx';
+import routes from './Router/Router';
+import {state} from './Mobx/State';
 
-render (
-    <div>
-        <First />
-        <Second />
-    </div>,
-    document.getElementById('app')
-);
+render(<Router history={browserHistory} routes={routes(state)}></Router>, document.body);
