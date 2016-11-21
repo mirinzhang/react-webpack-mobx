@@ -1,17 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {Router, Route, browserHistory} from 'react-router';
+import {Router, browserHistory} from 'react-router';
 
-import App from './components/App';
-import First from './components/First';
-import Second from './components/Second';
+import routes from './Router/Router';
+import {state} from './Mobx/State';
 
-render((
-        <Router history={browserHistory}>
-            <Route path="/" component={App}>
-                <Route path="first" component={First} />
-                <Route path="second" component={Second} />
-            </Route>
-        </Router>
-    ),
-    document.body);
+render(<Router history={browserHistory} routes={routes(state)}></Router>, document.body);

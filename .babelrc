@@ -1,37 +1,38 @@
 {
-  "presets": [
-    "es2015",
-    "stage-0",
-    "react"
-  ],
-  "env": {
-    "development": {
-      "plugins": [
-        "transform-runtime",
-        [
-          "react-transform",
-          {
-            "transforms": [
-              {
-                "transform": "react-transform-hmr",
-                "imports": [
-                  "react"
-                ],
-                "locals": [
-                  "module"
+    "presets": [
+        "es2015",
+        "stage-0",
+        "react"
+    ],
+    "plugins": ["transform-decorators-legacy"],
+    "env": {
+        "development": {
+            "plugins": [
+                "transform-runtime",
+                [
+                    "react-transform",
+                    {
+                        "transforms": [
+                            {
+                                "transform": "react-transform-hmr",
+                                "imports": [
+                                    "react"
+                                ],
+                                "locals": [
+                                    "module"
+                                ]
+                            },
+                            {
+                                "transform": "react-transform-catch-errors",
+                                "imports": [
+                                    "react",
+                                    "redbox-react"
+                                ]
+                            }
+                        ]
+                    }
                 ]
-              },
-              {
-                "transform": "react-transform-catch-errors",
-                "imports": [
-                  "react",
-                  "redbox-react"
-                ]
-              }
             ]
-          }
-        ]
-      ]
+        }
     }
-  }
 }
