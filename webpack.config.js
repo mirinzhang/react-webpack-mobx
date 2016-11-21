@@ -4,7 +4,7 @@ const PORT = 4040;
 
 module.exports = {
     devServer: {
-        noInfo: false,
+        noInfo: true,
         inline: true,
         colors: true,
         compress: true,
