@@ -11,7 +11,7 @@ import '../Style/Todos';
 export default class Todos extends Component {
     @autobind
     onPress(event){
-        if(event.key === 'Enter'){
+        if(event.key === 'Enter' && !!event.target.value){
             const param = {
                 text: event.target.value,
                 createdTime: Date.now()
@@ -34,7 +34,7 @@ export default class Todos extends Component {
                     <li><input type="text" placeholder="Please input" onKeyPress={this.onPress}/></li>
                     {
                         todoList.map((val, key) => {
-                            return <li className="list" key={key}>{val.text} <span onClick={() => this.remove(key)}>&#10008;</span></li>
+                            return <li className="list" key={key}>{val.text} <span onClick={() => this.remove(key)}>&times;</span></li>
                         })
                     }
                 </ul>

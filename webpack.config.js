@@ -4,7 +4,7 @@ const PORT = 4040;
 
 module.exports = {
     devServer: {
-        noInfo: false,
+        noInfo: true,
         inline: true,
         colors: true,
         compress: true,
@@ -32,6 +32,11 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loaders: ['babel', 'eslint']
+            },
+            {
                 test: /\.(scss|sass)$/,
                 loader: 'style!css!sass',
                 exclude: /node_modules/
@@ -42,6 +47,9 @@ module.exports = {
                 exclude: /node_modules/
             }
         ]
+    },
+    eslint: {
+        configFile: './.eslintrc'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
