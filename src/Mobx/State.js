@@ -3,6 +3,8 @@
  */
 import Todos from './Todos';
 
-export const state = {
-    todos: new Todos()
+const state = {
+    todos: new Todos(),
 };
+
+export default { state };

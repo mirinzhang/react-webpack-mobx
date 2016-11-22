@@ -3,7 +3,13 @@
     "plugins": [
         "react"
     ],
+    "extends": "airbnb/base",
     "rules": {
+        "indent": ["error", 4],
         "max-len": [1, 70, 2, {"ignoreComments": true}],
-    }
+        "no-unused-vars": [1],
+        "react/require-extension": "off",
+        "import/no-unresolved": 0,
+        "import/extensions": 0
+    },
 }
