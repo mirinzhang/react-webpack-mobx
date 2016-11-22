@@ -8,7 +8,7 @@ export default class App extends Component {
     render() {
         return (
             <div className="container">
-                <h1>React-mobx with webpack & react-router</h1>
+                <h1>React & mobx</h1>
                 <h3>
                     <Link to="/intro">Intro</Link>
                     <Link to="/todo">Todo</Link>
