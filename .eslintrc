@@ -5,6 +5,5 @@
     ],
     "rules": {
         "max-len": [1, 70, 2, {"ignoreComments": true}],
-        "prop-types": [2]
     }
 }
