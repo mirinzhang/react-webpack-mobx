@@ -1,15 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 export default class Second extends Component {
     render() {
         return (
-            <div className="intro-container">
-                <div className="intro">
-                    <h3>描述：react项目基本结构</h3>
-                    <h3>技术栈：react + react-router + mobxjs</h3>
-                    <h3>工具：webpack + eslint + babel</h3>
-                </div>
-            </div>
+          <div className="container">
+              <h1>React & mobx</h1>
+              <h3>
+                  <Link to="/intro">Intro</Link>
+                  <Link to="/todo">Todo</Link>
+              </h3>
+              {this.props.children}
+          </div>
         );
     }
 }

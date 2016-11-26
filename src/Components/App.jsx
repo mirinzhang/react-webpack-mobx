@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router';
-import {observer} from 'mobx-react';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+
 import '../Style/App';
 
-@observer
 export default class App extends Component {
     render() {
         return (
@@ -15,6 +14,6 @@ export default class App extends Component {
                 </h3>
                 {this.props.children}
             </div>
-        )
+        );
     }
 }

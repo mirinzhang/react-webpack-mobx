@@ -27,12 +27,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.jsx?$/,
-                loader: 'babel',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 loaders: ['babel', 'eslint']
             },
@@ -44,7 +39,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader: 'style!css',
-                exclude: /node_modules/
+                exclude: /node_modules/,
             }
         ]
     },
