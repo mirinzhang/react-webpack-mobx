@@ -16,6 +16,7 @@
         "document": true
     },
     "class-methods-use-this": ["error", "exceptMethods": [
+      "render",
       "componentDidMount",
       "componentDidUpdate",
       "componentWillMount",
