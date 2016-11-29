@@ -7,7 +7,7 @@
     "rules": {
         "indent": ["error", 4],
         "max-len": [1, 70, 2, {"ignoreComments": true}],
-        "no-unused-vars": [1],
+        "no-unused-vars": [0],
         "import/no-unresolved": 0,
         "import/extensions": 0,
         "no-param-reassign": 0
@@ -15,14 +15,13 @@
     "globals": {
         "document": true
     },
-    "class-methods-use-this": [2, "exceptMethods": [
+    "class-methods-use-this": ["error", "exceptMethods": [
       "componentDidMount",
       "componentDidUpdate",
       "componentWillMount",
       "componentWillReceiveProps",
       "componentWillUnmount",
       "componentWillUpdate",
-      "render",
       "shouldComponentUpdate",
     ]],
     "import/no-extraneous-dependencies": ["error", {
