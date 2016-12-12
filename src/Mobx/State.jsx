@@ -4,7 +4,7 @@
 import Todos from './Todos';
 
 const state = {
-    todos: new Todos(),
+  todos: new Todos(),
 };
 
 export default { state };

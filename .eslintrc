@@ -1,30 +1,48 @@
 {
+    "extends": "airbnb",
     "parser": "babel-eslint",
+    "env": {
+        "node": true
+    },
     "plugins": [
         "react"
     ],
-    "extends": "airbnb/base",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
     "rules": {
-        "indent": ["error", 4],
+        "indent": ["error", 2],
         "max-len": [1, 70, 2, {"ignoreComments": true}],
         "no-unused-vars": [0],
         "import/no-unresolved": 0,
         "import/extensions": 0,
-        "no-param-reassign": 0
+        "no-param-reassign": 0,
+        "react/jsx-indent": [1],
+        "react/jsx-indent-props": [1],
+        "react/prefer-stateless-function": [0, {"ignorePureComponents": true}],
+        "react/prop-types": [1],
+        "jsx-a11y/no-static-element-interactions": [1],
+        "react/forbid-prop-types": [1, {"forbid": ["any"]}]
     },
     "globals": {
         "document": true
     },
-    "class-methods-use-this": ["error", "exceptMethods": [
-      "render",
-      "componentDidMount",
-      "componentDidUpdate",
-      "componentWillMount",
-      "componentWillReceiveProps",
-      "componentWillUnmount",
-      "componentWillUpdate",
-      "shouldComponentUpdate",
-    ]],
+    "class-methods-use-this": ["error", {
+        "exceptMethods": [
+            "render",
+            "componentWillMount",
+            "componentDidMount",
+            "componentWillReceiveProps",
+            "shouldComponentUpdate",
+            "componentWillUpdate",
+            "componentDidUpdate",
+            "componentWillUnmount"
+        ]
+    }],
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": false,
       "optionalDependencies": false,
