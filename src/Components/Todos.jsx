@@ -43,9 +43,9 @@ export default class Todos extends Component {
                         todoList.map((val, key) => (
                             <li className="list" key={key}>
                                 {val.text}
-                                <span
+                                <button
                                     onClick={() => this.remove(key)}
-                                >&times;</span>
+                                >&times;</button>
                             </li>
                         ))
                     }

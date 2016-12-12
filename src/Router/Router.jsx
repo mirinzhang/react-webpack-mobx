@@ -11,9 +11,9 @@ import Intro from '../Components/Intro';
 
 const routes = store => (
     <Route path="/" component={App}>
-        <IndexRoute component={Intro}/>
-        <Route path="todo" component={Todo} store={store}/>
-        <Route path="intro" component={Intro}/>
+        <IndexRoute component={Intro} />
+        <Route path="todo" component={Todo} store={store} />
+        <Route path="intro" component={Intro} />
     </Route>
 );
 

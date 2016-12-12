@@ -11,7 +11,7 @@ module.exports = {
         historyApiFallback: true,
         port: PORT,
         contentBase: 'dist/',
-        open: 'http://127.0.0.1:' + PORT
+        // open: 'http://127.0.0.1:' + PORT
     },
     entry: [
         './src/main'
