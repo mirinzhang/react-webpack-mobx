@@ -33,18 +33,18 @@ export default class Todos extends Component {
             <div className="todo-container">
                 <ul>
                     <li>
-                      <input
-                        type="text"
-                        placeholder="Please input"
-                        onKeyPress={this.onPress}
-                      />
+                        <input
+                            type="text"
+                            placeholder="Please input"
+                            onKeyPress={this.onPress}
+                        />
                     </li>
                     {
                         todoList.map((val, key) => (
                             <li className="list" key={key}>
-                              {val.text}
-                              <span
-                                onClick={() => this.remove(key)}
+                                {val.text}
+                                <span
+                                    onClick={() => this.remove(key)}
                                 >&times;</span>
                             </li>
                         ))

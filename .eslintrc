@@ -1,15 +1,14 @@
 {
     "parser": "babel-eslint",
     "plugins": [
-        "react"
+        "react",
+        "jsx-a11y"
     ],
     "parserOptions": {
+        "ecmaVersion": 6,
         "ecmaFeatures": {
             "jsx": true
         }
-    },
-    "ecmaFeatures": {
-      "jsx": true
     },
     "extends": "airbnb/base",
     "rules": {
