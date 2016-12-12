@@ -23,9 +23,10 @@
         "no-param-reassign": 0,
         "react/jsx-indent": [1],
         "react/jsx-indent-props": [1],
-        "react/prefer-stateless-function": [1],
+        "react/prefer-stateless-function": [0, {"ignorePureComponents": true}],
         "react/prop-types": [1],
-        "jsx-a11y/no-static-element-interactions": [1]
+        "jsx-a11y/no-static-element-interactions": [1],
+        "react/forbid-prop-types": [1, {"forbid": ["any"]}]
     },
     "globals": {
         "document": true

@@ -1,7 +1,7 @@
 /**
  * Created by Min on 2016/11/21.
  */
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { observer } from 'mobx-react';
 import autobind from 'autobind-decorator';
 
@@ -9,6 +9,12 @@ import '../Style/Todos';
 
 @observer
 export default class Todos extends Component {
+  static propTypes = {
+    route: PropTypes.shape({
+      store: PropTypes.object.isRequired,
+    }),
+  };
+
   @autobind
   onPress(event) {
     if (event.key === 'Enter' && !!event.target.value) {

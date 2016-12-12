@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import '../Style/App';
 
 export default class App extends Component {
+  static propTypes = {
+    children: PropTypes.element,
+  };
+
   render() {
     return (
       <div className="container">
