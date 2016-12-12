@@ -3,6 +3,14 @@
     "plugins": [
         "react"
     ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "extends": "airbnb/base",
     "rules": {
         "indent": ["error", 4],
@@ -15,16 +23,18 @@
     "globals": {
         "document": true
     },
-    "class-methods-use-this": ["error", "exceptMethods": [
-      "render",
-      "componentDidMount",
-      "componentDidUpdate",
-      "componentWillMount",
-      "componentWillReceiveProps",
-      "componentWillUnmount",
-      "componentWillUpdate",
-      "shouldComponentUpdate",
-    ]],
+    "class-methods-use-this": ["error", {
+        "exceptMethods": [
+            "render",
+            "componentWillMount",
+            "componentDidMount",
+            "componentWillReceiveProps",
+            "shouldComponentUpdate",
+            "componentWillUpdate",
+            "componentDidUpdate",
+            "componentWillUnmount"
+        ]
+    }],
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": false,
       "optionalDependencies": false,

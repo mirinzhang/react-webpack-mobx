@@ -9,6 +9,6 @@ const { state } = Stores;
 const { routes } = Routes;
 
 render(
-  <Router history={browserHistory} routes={routes(state)}></Router>,
+  <Router history={browserHistory} routes={routes(state)}/>,
   document.body,
 );
