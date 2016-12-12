@@ -9,48 +9,48 @@ import '../Style/Todos';
 
 @observer
 export default class Todos extends Component {
-    @autobind
-    onPress(event) {
-        if (event.key === 'Enter' && !!event.target.value) {
-            const param = {
-                text: event.target.value,
-                createdTime: Date.now(),
-            };
+  @autobind
+  onPress(event) {
+    if (event.key === 'Enter' && !!event.target.value) {
+      const param = {
+        text: event.target.value,
+        createdTime: Date.now(),
+      };
 
-            this.props.route.store.todos.addList(param);
-            event.target.value = '';
-        }
+      this.props.route.store.todos.addList(param);
+      event.target.value = '';
     }
+  }
 
-    @autobind
-    remove(index) {
-        this.props.route.store.todos.removeList(index);
-    }
+  @autobind
+  remove(index) {
+    this.props.route.store.todos.removeList(index);
+  }
 
-    render() {
-        const { todoList } = this.props.route.store.todos;
-        return (
-            <div className="todo-container">
-                <ul>
-                    <li>
-                        <input
-                            type="text"
-                            placeholder="Please input"
-                            onKeyPress={this.onPress}
-                        />
-                    </li>
-                    {
-                        todoList.map((val, key) => (
-                            <li className="list" key={key}>
-                                {val.text}
-                                <button
-                                    onClick={() => this.remove(key)}
-                                >&times;</button>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
-        );
-    }
+  render() {
+    const { todoList } = this.props.route.store.todos;
+    return (
+      <div className="todo-container">
+        <ul>
+          <li>
+            <input
+              type="text"
+              placeholder="Please input"
+              onKeyPress={this.onPress}
+            />
+          </li>
+          {
+            todoList.map((val, key) => (
+              <li className="list" key={key}>
+                {val.text}
+                <button
+                  onClick={() => this.remove(key)}
+                >&times;</button>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    );
+  }
 }

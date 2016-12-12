@@ -4,15 +4,15 @@
 import { observable } from 'mobx';
 
 export default class Todos {
-    @observable todoList = [];
+  @observable todoList = [];
 
-    @observable
-    addList(param) {
-        this.todoList.push(param);
-    }
+  @observable
+  addList(param) {
+    this.todoList.push(param);
+  }
 
-    @observable
-    removeList(index) {
-        this.todoList.splice(index, 1);
-    }
+  @observable
+  removeList(index) {
+    this.todoList.splice(index, 1);
+  }
 }
