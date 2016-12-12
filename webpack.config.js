@@ -49,8 +49,18 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-    ],
-}
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'vendor',
+          filename: 'vendor.bundle.js'
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: {
+              warnings: false,
+            },
+        }),
+    ]
+};
 
 if (process.env.NODE_ENV === 'production') {
     module.exports.plugins = [

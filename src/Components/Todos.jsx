@@ -1,5 +1,6 @@
 /**
  * Created by Min on 2016/11/21.
+ * Todo example
  */
 import React, { Component, PropTypes } from 'react';
 import { observer } from 'mobx-react';
@@ -23,18 +24,18 @@ export default class Todos extends Component {
         createdTime: Date.now(),
       };
 
-      this.props.route.store.todos.addList(param);
+      this.props.route.store.addList(param);
       event.target.value = '';
     }
   }
 
   @autobind
   remove(index) {
-    this.props.route.store.todos.removeList(index);
+    this.props.route.store.removeList(index);
   }
 
   render() {
-    const { todoList } = this.props.route.store.todos;
+    const { todoList } = this.props.route.store;
     return (
       <div className="todo-container">
         <ul>
