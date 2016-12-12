@@ -1,5 +1,6 @@
 /**
  * Created by Min on 2016/11/21.
+ * Todo state
  */
 import { observable } from 'mobx';
 

@@ -3,9 +3,9 @@ import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 
 import Routes from './Router/Router';
-import Stores from './Mobx/State';
+import Stores from './Mobx/Todos';
 
-const { state } = Stores;
+const state = new Stores();
 const { routes } = Routes;
 
 render(
