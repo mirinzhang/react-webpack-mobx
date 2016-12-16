@@ -9,7 +9,7 @@
 >
 > `yarn install` 或 `npm install`
 >
-> `npm run dev`
+> `npm run dev` 或 `yarn dev`
 
 #### 说明
 
@@ -26,12 +26,12 @@ import autobind from 'autobind-decorator';
 
 @observer
 export default class Todos extends Component {
-    
+
     @autobind
     onPress(event){
         console.info(event.target.value);
     }
-    
+
     render(){
         return (
             <div className="todo-container">

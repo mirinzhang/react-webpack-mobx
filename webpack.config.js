@@ -9,9 +9,10 @@ module.exports = {
         colors: true,
         compress: true,
         historyApiFallback: true,
+        host: '0.0.0.0',
         port: PORT,
         contentBase: 'dist/',
-        open: 'http://127.0.0.1:' + PORT
+        open: 'http://0.0.0.0:' + PORT
     },
     entry: [
         './src/main'
