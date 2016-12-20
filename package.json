@@ -4,8 +4,8 @@
     "description": "app web",
     "main": "index.js",
     "scripts": {
-        "dev": "cross-env NODE_ENV=production webpack-dev-server",
-        "build": "webpack",
+        "dev": "cross-env NODE_ENV=development webpack-dev-server",
+        "build": "cross-env NODE_ENV=production webpack",
         "lint": "eslint scripts"
     },
     "repository": "https://github.com/ybing/react-webpack-mobx.git",
@@ -39,6 +39,7 @@
         "eslint-plugin-import": "^2.2.0",
         "eslint-plugin-jsx-a11y": "^2.2.3",
         "eslint-plugin-react": "^6.7.1",
+        "html-webpack-plugin": "^2.24.1",
         "node-sass": "^3.13.0",
         "react-transform-catch-errors": "^1.0.2",
         "react-transform-hmr": "^1.0.4",

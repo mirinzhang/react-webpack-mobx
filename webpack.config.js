@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-const PORT = 4040;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const PORT = 3000;
 
 module.exports = {
     devServer: {
@@ -9,10 +10,10 @@ module.exports = {
         colors: true,
         compress: true,
         historyApiFallback: true,
-        host: '0.0.0.0',
         port: PORT,
-        contentBase: 'dist/',
-        open: 'http://0.0.0.0:' + PORT
+        host: "0.0.0.0",
+        contentBase: '/',
+        open: "http://127.0.0.0" + PORT
     },
     entry: [
         './src/main'
@@ -50,15 +51,30 @@ module.exports = {
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new webpack.optimize.CommonsChunkPlugin({
-          name: 'vendor',
-          filename: 'vendor.bundle.js'
+        new HtmlWebpackPlugin({
+          filename: 'index.html',
+          template: 'index.html',
+          inject: true
         }),
     ]
 };
 
 if (process.env.NODE_ENV === 'production') {
     module.exports.plugins = [
+        new webpack.optimize.CommonsChunkPlugin({
+          name: 'vendor',
+          filename: 'vendor.bundle.js'
+        }),
+        new HtmlWebpackPlugin({
+          filename: 'index.html',
+          template: 'index.html',
+          inject: true,
+          minify: {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeAttributeQuotes: true
+          }
+        }),
         new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"production"'
@@ -70,7 +86,7 @@ if (process.env.NODE_ENV === 'production') {
             }
         }),
         new webpack.optimize.OccurenceOrderPlugin()
-    ]
+    ];
 } else {
     module.exports.devtool = '#source-map'
 }
