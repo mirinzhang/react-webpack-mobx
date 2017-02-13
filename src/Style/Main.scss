@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    background: #FFFFFF;
+
+    header {
+        padding: 10px 20px;
+        border-bottom: 1px #E1E1E1 solid;
+        color: #7b7a7a;
+    }
+
+    main {
+        .menu {
+            padding: 15px;
+
+            a {
+                color: #000000;
+                text-decoration: none;
+                font-family: "PingFang HK";
+                margin-right: 20px;
+            }
+        }
+    }
+}

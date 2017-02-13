@@ -1,92 +1,139 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const PORT = 3000;
+const path = require("path"),
+    webpack = require("webpack"),
+    HtmlWebpackPlugin = require("html-webpack-plugin"),
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    HOST = "0.0.0.0",
+    PORT = 4040;
+let commonPlugins = [];
 
 module.exports = {
     devServer: {
-        noInfo: true,
-        inline: true,
-        colors: true,
         compress: true,
+        inline: true,
+        hot: true,
         historyApiFallback: true,
         port: PORT,
-        host: "0.0.0.0",
-        contentBase: '/',
-        open: "http://127.0.0.0" + PORT
+        host: HOST,
+        open: true,
+        headers: {'Access-Control-Allow-Origin': '*'},
+        proxy: {
+            "/app/*": {
+                target: "https://app-server.mengxiaozhu.cn/0/0",
+                toProxy: true,
+                prependPath: true,
+                changeOrigin: true
+            }
+        }
     },
     entry: [
-        './src/main'
+        "whatwg-fetch",
+        "./src/Entry",
     ],
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, "dist"),
         filename: "[name].js",
-        chunkFilename: "[name].[chunkhash:5].chunk.js",
+        chunkFilename: "[name].[chunkhash:6].chunk.js",
     },
     resolve: {
-        extensions: ['', '.jsx', '.js', '.sass', '.scss', '.css'],
+        extensions: [".jsx", ".js", ".sass", ".scss"],
+    },
+    resolveLoader: {
+        moduleExtensions: ["-loader"]
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.(js|jsx)$/,
+                use: ["babel", "eslint"],
                 exclude: /node_modules/,
-                loaders: ['babel', 'eslint']
             },
             {
                 test: /\.(scss|sass)$/,
-                loader: 'style!css!sass',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.css$/,
-                loader: 'style!css',
+                use: ExtractTextPlugin.extract({
+                    fallback: "style",
+                    use: ["css", "postcss", "sass"],
+                }),
                 exclude: /node_modules/,
             }
         ]
     },
-    eslint: {
-        configFile: './.eslintrc'
-    },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
-        new HtmlWebpackPlugin({
-          filename: 'index.html',
-          template: 'index.html',
-          inject: true
+        new ExtractTextPlugin({
+            filename: "bundle.css",
+            disable: false,
+            allChunks: true
         }),
     ]
 };
 
-if (process.env.NODE_ENV === 'production') {
-    module.exports.plugins = [
+if (process.env.NODE_ENV === "production") {
+    commonPlugins = [
         new webpack.optimize.CommonsChunkPlugin({
-          name: 'vendor',
-          filename: 'vendor.bundle.js'
+            name: "vendor",
+            filename: "vendor.bundle.js"
         }),
         new HtmlWebpackPlugin({
-          filename: 'index.html',
-          template: 'index.html',
-          inject: true,
-          minify: {
-            removeComments: true,
-            collapseWhitespace: true,
-            removeAttributeQuotes: true
-          }
+            filename: "index.html",
+            template: "index.html",
+            inject: true,
+            hash: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeAttributeQuotes: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true,
+            }
         }),
         new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: 'production'
+            "process.env": {
+                NODE_ENV: "production"
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
+            sourceMap: true,
+            output: false,
             compress: {
-                warnings: false
-            }
+                unused: true,
+                dead_code: true,
+                pure_getters: true,
+                warnings: false,
+                screw_ie8: true,
+                conditionals: true,
+                comparisons: true,
+                sequences: true,
+                evaluate: true,
+                join_vars: true,
+                if_return: true,
+            },
         }),
-        new webpack.optimize.OccurenceOrderPlugin()
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+            debug: false,
+            quiet: true,
+        }),
     ];
 } else {
-    module.exports.devtool = '#source-map'
+    commonPlugins = [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
+        new HtmlWebpackPlugin({
+            filename: "index.html",
+            template: "index.html",
+            inject: true,
+            hash: true,
+        }),
+        new webpack.LoaderOptionsPlugin({
+            debug: true,
+            options: {
+                eslint: {
+                    configFile: './.eslintrc',
+                },
+            }
+        }),
+    ];
+    module.exports.devtool = "source-map";
 }
+
+module.exports.plugins = module.exports.plugins.concat(commonPlugins);
