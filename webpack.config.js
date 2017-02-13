@@ -16,14 +16,6 @@ module.exports = {
         host: HOST,
         open: true,
         headers: {'Access-Control-Allow-Origin': '*'},
-        proxy: {
-            "/app/*": {
-                target: "https://app-server.mengxiaozhu.cn/0/0",
-                toProxy: true,
-                prependPath: true,
-                changeOrigin: true
-            }
-        }
     },
     entry: [
         "whatwg-fetch",
