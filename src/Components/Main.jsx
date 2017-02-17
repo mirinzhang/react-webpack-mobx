@@ -19,10 +19,6 @@ export default class Main extends Component {
         router: PropTypes.object.isRequired,
     };
 
-    componentWillMount() {
-        app.message = 'loaded component';
-    }
-
     render() {
         return (
             <div className="container">
