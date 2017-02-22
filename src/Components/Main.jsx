@@ -5,8 +5,6 @@ import { observer } from 'mobx-react';
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import { app } from '../State/Index';
-
 import '../Style/Main';
 
 @observer
