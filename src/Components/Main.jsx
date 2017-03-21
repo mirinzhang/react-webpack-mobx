@@ -4,6 +4,7 @@
 import { observer } from 'mobx-react';
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
+import { Math } from './Math';
 
 import '../Style/Main';
 
@@ -28,6 +29,7 @@ export default class Main extends Component {
                         <Link to="/intro">Intro</Link>
                         <Link to="/todo">Todo</Link>
                     </div>
+                    <Math compiler="TypeScript" framework="React" />
                     <div className="sub-item">
                         {this.props.children}
                     </div>

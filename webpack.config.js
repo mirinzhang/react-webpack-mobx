@@ -30,7 +30,7 @@ module.exports = {
         chunkFilename: "[name].[chunkhash:6].chunk.js",
     },
     resolve: {
-        extensions: [ ".jsx", ".js", ".sass", ".scss" ],
+        extensions: [ ".tsx", ".ts", ".jsx", ".js", ".sass", ".scss" ],
     },
     resolveLoader: {
         moduleExtensions: [ "-loader" ]
@@ -38,9 +38,19 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(ts|tsx)$/,
+                use: [ "awesome-typescript" ],
+                exclude: /node_modules/,
+            },
+            {
+                test: /\.jsx$/,
                 use: [ "babel", "eslint" ],
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.js$/,
+                use: [ "source-map" ],
+                enforce: "pre"
             },
             {
                 test: /\.(scss|sass)$/,
