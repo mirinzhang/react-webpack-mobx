@@ -4,7 +4,10 @@ const path = require("path"),
     ExtractTextPlugin = require("extract-text-webpack-plugin"),
     HOST = "0.0.0.0",
     PORT = 4040;
-let commonPlugins = [];
+let commonPlugins = [],
+    cssExtract = process.env.NODE_ENV === "production"
+        ? ExtractTextPlugin.extract({ fallback: "style", use: [ "css", "postcss", "sass" ], })
+        : [ "style", "css", "postcss", "sass" ];
 
 module.exports = {
     devServer: {
@@ -15,7 +18,7 @@ module.exports = {
         port: PORT,
         host: HOST,
         open: true,
-        headers: {'Access-Control-Allow-Origin': '*'},
+        headers: { 'Access-Control-Allow-Origin': '*' },
     },
     entry: [
         "whatwg-fetch",
@@ -27,35 +30,26 @@ module.exports = {
         chunkFilename: "[name].[chunkhash:6].chunk.js",
     },
     resolve: {
-        extensions: [".jsx", ".js", ".sass", ".scss"],
+        extensions: [ ".jsx", ".js", ".sass", ".scss" ],
     },
     resolveLoader: {
-        moduleExtensions: ["-loader"]
+        moduleExtensions: [ "-loader" ]
     },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
-                use: ["babel", "eslint"],
+                use: [ "babel", "eslint" ],
                 exclude: /node_modules/,
             },
             {
                 test: /\.(scss|sass)$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style",
-                    use: ["css", "postcss", "sass"],
-                }),
+                use: cssExtract,
                 exclude: /node_modules/,
             }
         ]
     },
-    plugins: [
-        new ExtractTextPlugin({
-            filename: "bundle.css",
-            disable: false,
-            allChunks: true
-        }),
-    ]
+    plugins: []
 };
 
 if (process.env.NODE_ENV === "production") {
@@ -63,6 +57,11 @@ if (process.env.NODE_ENV === "production") {
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendor",
             filename: "vendor.bundle.js"
+        }),
+        new ExtractTextPlugin({
+            filename: "[name].style.[contenthash].css",
+            disable: false,
+            allChunks: true
         }),
         new HtmlWebpackPlugin({
             filename: "index.html",
@@ -80,7 +79,7 @@ if (process.env.NODE_ENV === "production") {
         }),
         new webpack.DefinePlugin({
             "process.env": {
-                NODE_ENV: "production"
+                NODE_ENV: JSON.stringify("production")
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
